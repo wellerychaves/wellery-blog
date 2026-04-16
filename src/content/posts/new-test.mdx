@@ -1,0 +1,43 @@
+---
+title: "New Test"
+description: "Testando a renderização de componentes de mídia remota e performance de carregamento."
+pubDate: 2026-04-15
+category: "tutorial"
+tags: ["astro", "webdev", "performance"]
+---
+
+Este é um post de teste para validar se os componentes customizados estão sendo injetados corretamente via MDX.
+
+## Teste de Imagem Remota
+Abaixo, o componente `MediaImage` deve renderizar com lazy loading nativo.
+
+<MediaImage 
+  src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" 
+  alt="Um laptop em uma mesa de madeira" 
+  caption="Imagens externas exigem alt text para acessibilidade e SEO."
+/>
+
+## Teste de Vídeo (CDN/S3)
+O componente `MediaVideo` deve carregar apenas os metadados inicialmente, economizando banda.
+
+<MediaVideo 
+  src="https://new-uploads-akitaonrails.s3.us-east-2.amazonaws.com/2026/04/15/seedance/blender-render.mp4" 
+  caption="Renderização Cycles - Teste de fluidez e preload"
+/>
+
+## Teste de YouTube
+O `astro-embed-youtube` deve ser processado aqui.
+
+<YouTube id="fv9vA6RCNHU" />
+
+---
+
+### Verificações Necessárias:
+1. **Link na Home:** O post deve aparecer na lista ordenado pela data.
+2. **Layout:** O post deve estar dentro do `PostLayout` (com seu Header visível).
+3. **Imagens:** Inspecione a imagem; ela **deve** ter os atributos `loading="lazy"` e `decoding="async"`.
+4. **Vídeo:** O vídeo não deve começar a baixar o arquivo inteiro automaticamente (verifique o `preload="metadata"` no Network tab).
+
+```js
+const mizera = "mizera";
+```

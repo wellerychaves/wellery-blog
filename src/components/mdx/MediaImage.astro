@@ -1,0 +1,21 @@
+---
+const { src, alt, caption } = Astro.props;
+if (!src) throw new Error("MediaImage: 'src' é obrigatório.");
+---
+
+<figure class="my-8 w-full">
+	<img
+		src={src}
+		alt={alt || ""}
+		loading="lazy"
+		decoding="async"
+		class="w-full rounded-lg shadow-sm"
+	/>
+	{
+		caption && (
+			<figcaption class="mt-3 text-center text-sm text-gray-400 italic">
+				{caption}
+			</figcaption>
+		)
+	}
+</figure>

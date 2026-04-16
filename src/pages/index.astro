@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+// 1. Busca os posts
+const allPosts = await getCollection("posts");
+
+// 2. Ordena por data (mais recente primeiro)
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout pageTitle="Home" title="Wellery blog">
+	<h1 class="title">Blog</h1>
+	<ul class="space-y-4 list-disc list-inside">
+		{
+			posts.map((post) => (
+				<li class="text-lg">
+					<a
+						href={`/posts/${post.id}`}
+						class="text-blue-600 hover:text-blue-800 hover:underline decoration-1 underline-offset-4"
+					>
+						{post.data.title}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</Layout>

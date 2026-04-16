@@ -1,0 +1,27 @@
+---
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+interface Props {
+	id: string;
+	title?: string;
+}
+const { id, title = "Vídeo do YouTube" } = Astro.props;
+---
+
+<figure class="not-prose my-8 w-full">
+	<div class="aspect-video w-full overflow-hidden rounded-xl shadow-lg">
+		<YouTube
+			id={id}
+			playlabel={title}
+			class="w-full h-full"
+			posterQuality="high"
+		/>
+	</div>
+	{
+		title && (
+			<figcaption class="mt-2 text-center text-sm text-fg-muted italic">
+				{title}
+			</figcaption>
+		)
+	}
+</figure>

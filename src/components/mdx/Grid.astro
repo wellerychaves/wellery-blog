@@ -1,0 +1,8 @@
+---
+// src/components/mdx/Grid.astro
+const { cols = 2 } = Astro.props;
+---
+
+<div class={`grid grid-cols-1 md:grid-cols-${cols} gap-4 my-8`}>
+	<slot />
+</div>

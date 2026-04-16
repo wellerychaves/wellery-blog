@@ -1,0 +1,31 @@
+---
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+	<article class="max-w-180">
+		<header class="mb-12">
+			<h1 class="text-4xl font-bold text-center">{frontmatter.title}</h1>
+
+			<div class="mt-4 text-center text-sm text-gray-500">
+				<time datetime={frontmatter.pubDate.toISOString()}>
+					{
+						new Intl.DateTimeFormat("pt-BR", {
+							dateStyle: "long",
+							timeZone: "UTC",
+						}).format(frontmatter.pubDate)
+					}
+				</time>
+				<span class="mx-2">•</span>
+				<span class="uppercase font-semibold tracking-wide"
+					>{frontmatter.category}</span
+				>
+			</div>
+		</header>
+		<div class="prose prose-slate max-w-none">
+			<slot />
+		</div>
+	</article>
+</Layout>

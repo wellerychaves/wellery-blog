@@ -1,0 +1,23 @@
+---
+const { src, caption } = Astro.props;
+if (!src) throw new Error("MediaVideo: 'src' é obrigatório.");
+---
+
+<figure class="my-8 w-full">
+	<video
+		controls
+		playsinline
+		preload="metadata"
+		class="w-full rounded-lg shadow-md aspect-video bg-black"
+	>
+		<source src={src} type="video/mp4" />
+		Seu navegador não suporta vídeos.
+	</video>
+	{
+		caption && (
+			<figcaption class="mt-3 text-center text-sm text-gray-400 italic">
+				{caption}
+			</figcaption>
+		)
+	}
+</figure>
