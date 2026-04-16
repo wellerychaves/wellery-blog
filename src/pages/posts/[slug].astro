@@ -5,16 +5,14 @@ import MediaVideo from "../../components/mdx/MediaVideo.astro";
 import YouTube from "../../components/mdx/YouTube.astro";
 import PostLayout from "../../layouts/PostLayout.astro";
 
-// 1. Define quais páginas existem (Build Time)
 export async function getStaticPaths() {
 	const posts = await getCollection("posts");
 	return posts.map((post) => ({
-		params: { slug: post.id }, // O nome 'slug' deve ser igual ao nome do arquivo [slug].astro
+		params: { slug: post.id },
 		props: { post },
 	}));
 }
 
-// 2. Recupera os dados da prop
 const { post } = Astro.props;
 const { Content } = await render(post);
 

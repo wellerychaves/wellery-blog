@@ -10,7 +10,6 @@
 }
 
 @theme {
-	/* Use o prefixo --color-* diretamente para gerar utilidades (bg-surface, text-fg, etc) */
 	--color-bg: var(--color-amber-50);
 	--color-bg-surface: var(--color-amber-100);
 	--color-fg: var(--color-amber-950);
@@ -21,13 +20,9 @@
 	--color-border: var(--color-zinc-300);
 	--color-border-soft: var(--color-zinc-200);
 
-	/* Fontes declaradas uma única vez */
 	--font-serif: "Noto Serif", "Times New Roman", serif;
 	--font-sans: system-ui, -apple-system, sans-serif;
 	--font-mono: "Fira Code", "Cascadia Code", "Menlo", monospace;
-
-	/* Tokens de espaçamento/layout customizados */
-	--spacing-header-h: 52px;
 }
 
 .dark {
@@ -46,7 +41,8 @@
 	*,
 	*::before,
 	*::after {
-		transition-property: background-color, border-color, color, fill, stroke;
+		transition-property:
+			background-color, border-color, color, fill, stroke;
 		transition-duration: 200ms;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	}

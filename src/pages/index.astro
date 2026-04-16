@@ -2,11 +2,11 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
-// 1. Busca os posts
 const allPosts = await getCollection("posts");
 
-// 2. Ordena por data (mais recente primeiro)
-const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = allPosts.sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
 <Layout pageTitle="Home" title="Wellery blog">
