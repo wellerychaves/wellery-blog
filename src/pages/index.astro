@@ -4,9 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 const allPosts = await getCollection("posts");
 
-const posts = allPosts.sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout pageTitle="Home" title="Wellery blog">
