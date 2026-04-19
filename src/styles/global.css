@@ -59,15 +59,12 @@
 		-moz-osx-font-smoothing: grayscale;
 	}
 
-	.dark .astro-code {
-		background-color: var(--shiki-dark-bg) !important;
+	.astro-code {
+		background-color: var(--color-bg-surface) !important;
 		font-family: var(--font-mono);
-
-		span {
-			color: var(--shiki-dark) !important;
-		}
 	}
 }
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
