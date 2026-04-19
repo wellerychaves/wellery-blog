@@ -49,6 +49,10 @@
 			"includes": ["**/*.svelte", "**/*.astro"],
 			"linter": {
 				"rules": {
+					"correctness": {
+						"noUnusedImports": "off",
+						"noUnusedVariables": "off"
+					},
 					"style": {
 						"useSelfClosingElements": "off"
 					}
