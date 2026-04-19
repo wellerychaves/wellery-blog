@@ -5,10 +5,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
 	markdown: {
 		shikiConfig: {
-			themes: {
-				light: "gruvbox-light-hard",
-				dark: "tokyo-night",
-			},
+			theme: "catppuccin-latte",
 		},
 	},
 	integrations: [mdx()],
