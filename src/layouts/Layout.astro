@@ -9,10 +9,20 @@ const { pageTitle } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<title>{pageTitle}</title>
+		<script is:inline>
+			const theme =
+				localStorage.getItem("theme") ||
+				sessionStorage.getItem("theme");
+			if (theme === "dark") {
+				document.documentElement.classList.add("dark");
+			}
+		</script>
 	</head>
-	<body>
+	<body class="bg-bg font-serif">
 		<Header />
-		<main class="max-w-4xl mx-auto px-4 py-8">
+		<main class="max-w-180 mx-auto px-4 py-8">
 			<slot />
 		</main>
 	</body>
