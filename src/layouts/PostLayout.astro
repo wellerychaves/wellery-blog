@@ -1,15 +1,15 @@
 ---
+import Title from "../components/Title.astro";
 import Layout from "./Layout.astro";
 
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={frontmatter.title}>
-	<article class="max-w-180">
+<Layout pageTitle={frontmatter.title}>
+	<article class="text-fg">
 		<header class="mb-12">
-			<h1 class="text-4xl font-bold text-center">{frontmatter.title}</h1>
-
-			<div class="mt-4 text-center text-sm text-gray-500">
+			<Title title={frontmatter.title} />
+			<div class="mt-4 text-center text-sm text-fg-muted">
 				<time datetime={frontmatter.pubDate.toISOString()}>
 					{
 						new Intl.DateTimeFormat("pt-BR", {
@@ -18,14 +18,23 @@ const { frontmatter } = Astro.props;
 						}).format(frontmatter.pubDate)
 					}
 				</time>
-				<span class="mx-2">•</span>
-				<span class="uppercase font-semibold tracking-wide"
+				<span class="mx-2 text-fg-faint">•</span>
+				<span
+					class="uppercase font-semibold tracking-wide text-fg-muted"
 					>{frontmatter.category}</span
 				>
 			</div>
 		</header>
-		<div class="prose prose-slate max-w-none">
+		<div
+			class="prose max-w-none prose-strong:text-fg prose-headings:text-fg prose-code:p-1 prose-code:rounded-sm prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-code:text-fg prose-code:bg-bg-surface text-fg prose-a:text-accent prose-a:no-underline prose-a:hover:text-accent-hover prose-a:hover:underline prose-a:decoration-1 prose-a:underline-offset-4"
+		>
 			<slot />
 		</div>
 	</article>
 </Layout>
+<script>
+	document.querySelectorAll(".prose a").forEach((a) => {
+		a.target = "_blank";
+		a.rel = "noopener noreferrer";
+	});
+</script>
