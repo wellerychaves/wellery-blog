@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
 @font-face {
 	font-family: "Noto Serif";
 	src: url("/fonts/notoserif.woff2") format("woff2");
@@ -7,6 +8,7 @@
 	font-style: normal;
 	font-display: swap;
 }
+
 @font-face {
 	font-family: "JetBrains Mono";
 	src: url("/fonts/jetbrainsmono.woff2") format("woff2");
@@ -14,14 +16,15 @@
 	font-style: normal;
 	font-display: swap;
 }
+
 @theme {
 	--color-bg: var(--color-amber-50);
 	--color-bg-surface: var(--color-amber-100);
 	--color-fg: var(--color-stone-900);
 	--color-fg-muted: var(--color-stone-600);
 	--color-fg-faint: var(--color-stone-400);
-	--color-accent: var(--color-indigo-600);
-	--color-accent-hover: var(--color-blue-700);
+	--color-accent: var(--color-teal-700);
+	--color-accent-hover: var(--color-teal-900);
 	--color-border: var(--color-stone-200);
 	--color-border-soft: var(--color-stone-200);
 
@@ -29,17 +32,19 @@
 	--font-sans: system-ui, -apple-system, sans-serif;
 	--font-mono: "JetBrains Mono", "Cascadia Code", "Menlo", monospace;
 }
+
 .dark {
 	--color-bg: var(--color-stone-950);
 	--color-bg-surface: var(--color-stone-900);
 	--color-fg: var(--color-stone-200);
 	--color-fg-muted: var(--color-stone-400);
 	--color-fg-faint: var(--color-stone-500);
-	--color-accent: var(--color-indigo-600);
-	--color-accent-hover: var(--color-blue-300);
+	--color-accent: var(--color-teal-400);
+	--color-accent-hover: var(--color-teal-200);
 	--color-border: var(--color-stone-800);
 	--color-border-soft: var(--color-stone-900);
 }
+
 @layer base {
 	*,
 	*::before,
