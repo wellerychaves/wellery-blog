@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
 
 const allPosts = await getCollection("posts");
@@ -7,15 +8,15 @@ const allPosts = await getCollection("posts");
 const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout pageTitle="Home" title="Wellery blog">
-	<h1 class="title">Blog</h1>
-	<ul class="space-y-4 list-disc list-inside">
+<Layout pageTitle="Wellery - Blog" title="Wellery blog">
+	<Title title="Blog" />
+	<ul class="space-y-4 list-disc list-outside text-fg">
 		{
 			posts.map((post) => (
 				<li class="text-lg">
 					<a
 						href={`/posts/${post.id}`}
-						class="text-blue-600 hover:text-blue-800 hover:underline decoration-1 underline-offset-4"
+						class="text-accent hover:text-accent-hover hover:underline decoration-1 underline-offset-4"
 					>
 						{post.data.title}
 					</a>
