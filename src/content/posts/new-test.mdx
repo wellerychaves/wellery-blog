@@ -8,6 +8,9 @@ tags: ["astro", "webdev", "performance"]
 
 Este é um post de teste para validar se os componentes customizados estão sendo injetados corretamente via MDX.
 
+## Teste de link
+Um vídeo que fala sobre isso é o do canal nivlac57 [pau na maquina](https://www.youtube.com/watch?v=YiFpNXUGPGU)
+
 ## Teste de Imagem Remota
 Abaixo, o componente `MediaImage` deve renderizar com lazy loading nativo.
 
@@ -39,5 +42,15 @@ O `astro-embed-youtube` deve ser processado aqui.
 4. **Vídeo:** O vídeo não deve começar a baixar o arquivo inteiro automaticamente (verifique o `preload="metadata"` no Network tab).
 
 ```js
-const mizera = "mizera";
+// Default export
+const defaultAnimal = { name: "Default Animal" };
+export default defaultAnimal;
+
+// Generator function
+export function* idGenerator() {
+  let id = 0;
+  while (true) {
+    yield id++;
+  }
+}
 ```
