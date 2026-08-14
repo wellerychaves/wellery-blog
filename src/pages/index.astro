@@ -10,10 +10,10 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
 
 <Layout pageTitle="Wellery - Blog" title="Wellery blog">
 	<Title title="Blog" />
-	<ul class="space-y-4 list-disc list-outside text-fg">
+	<ul class="space-y-4 px-4 list-disc list-outside text-fg">
 		{
 			posts.map((post) => (
-				<li class="text-lg">
+				<li class="sm:text-lg text-base">
 					<a
 						href={`/posts/${post.id}`}
 						class="text-accent hover:text-accent-hover hover:underline decoration-1 underline-offset-4"
