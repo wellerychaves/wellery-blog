@@ -1,13 +1,8 @@
 services:
   blog:
     build: .
+    image: wellery-blog
     container_name: wellery-blog
     restart: unless-stopped
     ports:
-      - "6061:80" # Mude 8080 para a porta que você quer usar no seu servidor
-    networks:
-      - caddy # Para o seu Caddy conseguir enxergar o blog
-
-networks:
-  caddy:
-    external: true
+      - "6061:80"
