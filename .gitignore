@@ -18,3 +18,6 @@ pnpm-debug.log*
 .env.production
 
 afazer.md
+.stfolder
+.stfolder.*
+.stignore
