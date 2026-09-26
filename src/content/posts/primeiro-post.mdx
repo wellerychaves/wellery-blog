@@ -1,0 +1,83 @@
+---
+title: "Primeiro post - Meu blog e o homelab"
+description: "Aproveitando o primeiro post para falar onde tudo acontece"
+pubDate: 2026-09-26
+category: "pessoal"
+tags: []
+---
+
+## Tirando do papel
+
+Após poucas semanas de desenvolvimento, o MVP do meu blog está com a base pronta, e a culpa coloco no traço de perfeccionismo que tenho com esse projeto.
+Falando um pouco dele, este é meu blog, que criei com o intuito de deixar público os registros dos meus aprendizados de uma forma explicativa, pois há muita coisa essencial que se esquece diante da trivialidade do dia a dia. Então, ter um lugar para consultar essas informações é sempre bem-vindo, diria que tira o fardo de lembrar de tudo o tempo todo. Sobre deixar público, Tenho algumas razões para isso; uma delas seria evadir do trabalho de ter que explicar e argumentar repetidas vezes, para diferentes pessoas, assuntos técnicos porém simples, há coisas que gosto de explicar mas argumentar sobre algumas obviedades me desgastam.
+
+## O blog
+
+O desenvolvimento do projeto foi bem simples: desenvolvi toda a ideia, os padrões e o estilo na mão e, em seguida, finalizei com inteligência artificial a os componentes e a lógica de troca de tema.
+O projeto usa Bun, que é uma excelente alternativa ao Node.js, Tailwind CSS e Astro, um framework web orientado a conteúdo que, por natureza, prioriza performance e otimização de motores de busca. Junto do Astro, uso alguns plugins. O principal é o de Markdown, que é o que uso para escrever esses posts. No final, o resultado é uma página estática, com carregamento quase instantâneo, que você poderá testar acessando outras páginas.
+
+## Onde tudo acontece
+
+Depois de conhecer o mundo dos programas autohospedados e experimentar no meu computador principal, coloquei na cabeça que precisava ter meu próprio servidor para hospedar tudo que eu havia testado. Por algum motivo, quebrar a cabeça com Docker na época era sensacional para mim e, apesar de hoje ser trivial, ainda gosto. Falarei sobre isso no futuro.
+Durante os testes, conheci os famosos tiny, mini e micro pelo vídeo do ServeTheHome no YouTube e, a partir daí, após entender a utilidade que computadores antigos ainda podem ter, coloquei duas metas para o servidor. Queria algo barato e compacto como os tiny, mini e micro do vídeo.
+
+<YouTube
+	id="bx4_QCX_khU"
+	title="Vídeo do STH falando sobre o projeto TinyMiniMacro"
+/>
+
+Infelizmente, não encontrei nenhum dos dois. Passei um tempo procurando um computador com processador Intel i5 de 6ª geração até a 9ª geração com um bom preço, mas sem sucesso. Me parece que as pessoas têm um apego emocional com computador antigo e querem vender a um preço que não justifica as peças que tem.
+No final das contas, decidi usar um computador antigo que ganhei. Estava ansioso para testar sistemas como [CasaOS](https://casaos.zimaspace.com/) e o [UmbrelOS](https://umbrel.com/umbrelos) e testar os programas autohospedados já com meu servidor próprio rodando 24h.
+
+Recentemente, meu servidor completou um ano de funcionamento. Apesar dos problemas e quebras, tem me servido muito bem. O hardware dele é simples, tem rodado tudo que preciso, exceto hospedar servidor de Minecraft. O processador é um **Intel i5-3330** de 4 núcleos sem Hyper-Threading e **4GB de RAM DDR3**. De armazenamento, usa um **SSD SATA Lexar de 256GB**, que até então é só para o sistema e o Docker com os dados dos apps que rodam nos containers. O HD é um **Western Digital Blue de 500GB de 2,5"** (notebook), que é onde salvo os arquivos de mídia, como filmes, músicas, animes etc.
+
+<MediaImage
+	src="https://bucket.wellery.cc/1st-server-hardware.webp"
+	alt="Imagens das peças do servidor na mesa"
+	caption="Peças do servidor"
+/>
+
+O HD ser de 2,5" foi proposital. Já que, apesar de ter um HD de 3,5", não quis removê-lo do computador principal, o que me faria precisar de um HD externo ou transformar o servidor também em um NAS. Não era o que eu queria no momento. O de 2,5" estava largado dentro de uma case fingindo ser um HD externo, então decidi usá-lo, o que, para o próximo acontecimento, foi uma decisão acidental que me poupou um baita trabalho mais pra frente.
+
+## Sistema operacional
+
+Aqui serei raso e breve, quero guardar assunto para falar no futuro sobre isso. Antes de instalar qualquer coisa, pesquisei por alguns dias sobre sistemas operacionais Linux para home server. Testei o **CasaOS** no Ubuntu Server 24.04 e o **UmbrelOS**, que é uma distro Debian modificada com o sistema deles, e nenhum dos dois me permitiu um controle manual dos containers como eu gostaria. Era prático para o usuário comum como eu, mas não me deixava mexer nos containers na mão, sempre tinha permissão de usuário envolvida e meter sudo pra tudo não me agrada.
+
+O penúltimo testado foi o **openSUSE MicroOS**. Seria o SO ideal para um servidor de containers: o sistema de arquivos root dele é apenas leitura e as atualizações são atômicas (ou aplica tudo ou não aplica nada); se a atualização não funcionar, a reversão é imediata.
+Gostei da premissa e resolvi instalar. Tive dificuldade de entender esse jeito diferente que o sistema se comporta: atualizações criam snapshots e, ao reiniciar, ele inicia o novo snapshot atualizado; se algo quebrar, é só rodar `transactional-update rollback` e tudo volta como estava.
+A dificuldade maior foi saber como migrar meus containers do Docker para o Podman, que o MicroOS usa por padrão. Mesmo sabendo que dá para usar Docker, eu queria migrar, mas eu não tinha um sistema de organização de pastas que me agradasse. Os padrões que eu encontrava na internet eram colocando em sistemas de arquivo root, então tinha que ter sudo sempre e, como falei, isso me incomodava.
+
+Por sentir que eu estava tentando abraçar o mundo com as pernas ao tentar entender tudo de uma vez no MicroOS, passei a usar **Ubuntu Server 26.04 LTS** desde que lançou, e tem sido uma paz. Sei que não é o ideal, já que o Ubuntu tem o `do-release-upgrade`, que é um tiro de sorte: toda atualização corre o risco de quebrar algo por conta de pacotes mudarem e configurações serem sobrescritas. Mas o sistema familiar tem me permitido dedicar o estudo a outras coisas, como Docker, containers e a parte de rede, principalmente. Farei um post me aprofundando nesse assunto no futuro; quero registrar como tenho organizado tudo de forma simples e prática de se dar manutenção no dia a dia.
+
+## Juninho surge
+
+Como falei anteriormente, o servidor fica rodando 24h e, então, em uma madrugada de chuva forte, a fonte antiga de marca duvidosa finalmente resolveu abrir o bico. Ela explodiu e só me dei conta horas depois, sem internet. Uso Adguard Home como DNS, então, se o servidor para, a internet de casa também para. Abri a fonte torcendo para que fosse só o fusível, mas não foi: explodiu a trilha e os capacitores dentro da fonte. Não tive escolha além de comprar outra.
+
+Mas há males que vêm para o bem, e esse é um bom exemplo. Meu orçamento para a fonte era de R$ 200; as fontes, na época, estavam em um preço muito bom, dava para encontrar fonte de 500w aprovada em testes feitos pelo [TecLab](https://www.youtube.com/@TecLabbyRbuass/videos) pelos R$ 200 que eu tinha.
+Só que, lembra que mais acima eu falei que buscava algo compacto? Eu mais do que nunca estava incomodado com o tamanho. O gabinete anterior era um Multilaser preto de tamanho ATX e velho, chamava muita atenção no canto da sala, isso me fez buscar fontes flex para me livrar do bendito gabinete. As fontes flex são compactas como as de servidores, têm 1U de altura, que é quase 45mm, e me permitiriam remanejar tudo em uma caixa para me livrar do gabinete gigante em relação ao que tinha dentro.
+
+Nessas buscas por fonte, pensei em comprar gabinetes que já vinham com fonte, algo mais agradável no olhar que o velho Multilaser, até que encontrei o Bluecase SlimDesk BG-2002W, que já vem com fonte flex de 200W, que é mais que o suficiente para o hardware que eu já tinha. O novo gabinete é bem pequeno, exatamente o que eu precisava e não sabia; cabe 2 SSDs SATA e/ou 2 HDs de 2,5", que é justamente o que eu usava.
+Como bônus, a nova fonte proporcionou uma paz que não achei que teria. O ruído da fan da fonte anterior era absurdo, dava para escutar nitidamente durante a madrugada do outro lado da casa, algo que, com a fonte nova, só perto do servidor para ouvir.
+
+<MediaImage
+	src="https://bucket.wellery.cc/case-comparison.webp"
+	alt="Imagem dos dois gabinetes lado a lado"
+	caption="Observe o tamanho do gabinete antigo para o novo"
+/>
+
+Depois dessa comparação, minha mãe o apelidou de "Juninho" por ser bem pequeno e discreto, foi tão cômico na hora que virou o nome oficial dele.
+
+## O futuro do Juninho
+
+De agosto, quando montei o gabinete novo, até hoje nada mudou. Passei a primeira semana de olho nas temperaturas, pois o espaço interno é bem apertado e, com fonte, processador e discos gerando calor um próximo do outro, era uma preocupação que eu tinha. A temperatura da CPU fica por volta de 40°C, subiu 2°C de média em relação ao gabinete anterior.
+De upgrades, pretendo colocar mais memória RAM. Hoje usa 75% dos 4GB que tenho e tem começado a usar mais swap do que gostaria; colocar mais 4GB daria folga suficiente para ficar em paz por um bom tempo, mas, caso eu continue pensando em rodar meu próprio servidor de Minecraft, precisarei de pelo menos mais 8GB de RAM.
+
+## Conclusão
+Creio que isso é tudo que tenho para falar do meu servidor. Sei que fui raso em muita coisa, mas espero ter introduzido cada assunto para poder abordar em mais posts no futuro.
+Certamente é algo que não me vejo mais sem: não dependo mais de assinaturas para assistir a filmes, séries e animes, além de músicas, as mais ouvidas por mim estão no meu servidor, todas sem perda de qualidade. Tenho um mínimo de paz ao ter um filtro que bloqueia ameaças comuns e consigo hospedar meus sites e serviços gastando centavos na fatura de energia. O servidor virou algo essencial no meu dia a dia.
+
+<MediaImage
+	src="https://bucket.wellery.cc/1st-server-internals.jpeg"
+	alt="Imagem dos componentes internos no novo gabinete"
+	caption="Como tudo ficou dentro do gabinete novo"
+/>
